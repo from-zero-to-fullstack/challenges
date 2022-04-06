@@ -1,0 +1,6 @@
+{
+    "title": "Print today's date",
+    "description": "You need to create a program that displays todays date in a human readable format.\\n\\n",
+    "simpleInput": null,
+    "sampleOutput": "Monday, June 23rd 2022 18:27"
+}

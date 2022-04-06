@@ -8,10 +8,13 @@ From zero to FullStack - an unofficial course led by [Pedro Soares](https://gith
 
 This repository aims to test what you studied so far and challenge you 💪
 
+![app](./images/app.png)
+
 # Technologies
 
 - [React](https://reactjs.org/docs/getting-started.html)
 - [NPM](https://www.npmjs.com)
+- [Prettier](https://prettier.io/docs/en/)
 
 # Setup
 
@@ -58,6 +61,13 @@ Execute the following command:
 ```
 
 A browser page will open automagically 🪄
+
+# Code format
+
+We use prettier in this repository and, after you write or change the source code, run the following command in the terminal:
+```bash
+  npx prettier --write .
+```
 
 # License
 
