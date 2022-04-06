@@ -1,7 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export default function StatementSampleInput(props) {
-    return (
-        <div className='statement-sampleInput'>{props.props}</div>
-    )
+    return <div className="statement-sampleInput">{props.props}</div>;
 }

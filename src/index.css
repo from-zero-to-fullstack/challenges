@@ -72,12 +72,12 @@ body {
     height: 5vh;
     width: 100vw;
     border: none;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     cursor: pointer;
     background-color: turquoise;
     font-size: 1.5rem;
     font-weight: bold;
-    letter-spacing: .5rem;
+    letter-spacing: 0.5rem;
 }
 
 .submit-code:hover {
@@ -88,11 +88,10 @@ body {
     display: flex;
     flex-direction: column;
     color: azure;
-    padding: .5rem;
+    padding: 0.5rem;
 }
 
 .statement-description {
-
 }
 
 .statement-sampleInput {
@@ -109,7 +108,7 @@ body {
     display: flex;
     flex-direction: column;
     color: azure;
-    padding: .5rem;
+    padding: 0.5rem;
 }
 
 .console-message {

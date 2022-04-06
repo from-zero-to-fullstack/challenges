@@ -5,7 +5,6 @@ import ConsoleMessage from './ConsoleMessage';
 import ConsoleOutput from './ConsoleOutput';
 
 export default function Console(props) {
-
     const { message, output } = props;
 
     const [open, setOpen] = useState(true);
@@ -24,9 +23,9 @@ export default function Console(props) {
                     />
                 </button>
             </div>
-            <div className='console-body'>
-                { message ? <ConsoleMessage props={message} /> : null }
-                { output ? <ConsoleOutput props={output} /> : null }
+            <div className="console-body">
+                {message ? <ConsoleMessage props={message} /> : null}
+                {output ? <ConsoleOutput props={output} /> : null}
             </div>
         </div>
     );

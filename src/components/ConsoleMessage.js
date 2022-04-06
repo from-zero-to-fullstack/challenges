@@ -1,7 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export default function ConsoleMessage(props) {
-  return (
-    <div className='console-message'>{props.props}</div>
-  )
+    return <div className="console-message">{props.props}</div>;
 }

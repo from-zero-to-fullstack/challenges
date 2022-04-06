@@ -12,7 +12,9 @@ function App() {
     const [console, setConsole] = useLocalStorage('console', '');
 
     function submitCode() {
-        alert('\nNot implemented yet...\n\nBut good to know that you are doing something! 😁');
+        alert(
+            '\nNot implemented yet...\n\nBut good to know that you are doing something! 😁'
+        );
     }
 
     return (
@@ -23,10 +25,10 @@ function App() {
                     // description={statement.description}
                     // sampleInput={statement.sampleInput}
                     // sampleOutput={statement.sampleOutput}
-                    title='Print todays date'
-                    description='You need to create a program that displays todays date in a human readable format.'
+                    title="Print todays date"
+                    description="You need to create a program that displays todays date in a human readable format."
                     sampleInput={undefined}
-                    sampleOutput='Monday, June 23rd 2022 18:27'
+                    sampleOutput="Monday, June 23rd 2022 18:27"
                 />
                 <Editor
                     language="javascript"
@@ -37,13 +39,13 @@ function App() {
                 <Console
                     // message={console.message}
                     // output={console.output}
-                    message='Well done! ✅'
-                    output='Wednesday, April 06th 2022 20:27'
+                    message="Well done! ✅"
+                    output="Wednesday, April 06th 2022 20:27"
                 />
             </div>
             <button
                 type="button"
-                className='submit-code'
+                className="submit-code"
                 onClick={() => submitCode()}
             >
                 Submit

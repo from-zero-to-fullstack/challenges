@@ -6,7 +6,6 @@ import StatementSampleInput from './StatementSampleInput';
 import StatementSampleOutput from './StatementSampleOutput';
 
 export default function Statement(props) {
-
     const { title, description, sampleInput, sampleOutput } = props;
 
     console.log('title', title);
@@ -30,10 +29,16 @@ export default function Statement(props) {
                     />
                 </button>
             </div>
-            <div className='statement-body'>
-                { description ? <StatementDescription props={description} /> : null }
-                { sampleInput ? <StatementSampleInput props={sampleInput} /> : null }
-                { sampleOutput ? <StatementSampleOutput props={sampleOutput} /> : null }
+            <div className="statement-body">
+                {description ? (
+                    <StatementDescription props={description} />
+                ) : null}
+                {sampleInput ? (
+                    <StatementSampleInput props={sampleInput} />
+                ) : null}
+                {sampleOutput ? (
+                    <StatementSampleOutput props={sampleOutput} />
+                ) : null}
             </div>
         </div>
     );
