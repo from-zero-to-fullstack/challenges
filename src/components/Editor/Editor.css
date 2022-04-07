@@ -1,0 +1,16 @@
+.editor-container {
+    flex-grow: 1;
+    flex-basis: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: hsl(225, 6%, 25%);
+}
+
+.CodeMirror {
+    height: 100% !important;
+}
+
+.code-mirror-wrapper {
+    flex-grow: 1;
+    overflow: hidden;
+}

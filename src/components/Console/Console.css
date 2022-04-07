@@ -1,0 +1,9 @@
+.console-container {
+    background-color: hsl(225, 6%, 3%);
+    color: mediumspringgreen;
+}
+
+.console-body {
+    padding: 0.5rem;
+    height: 30vh;
+}

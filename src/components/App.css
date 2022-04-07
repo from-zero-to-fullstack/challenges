@@ -1,0 +1,49 @@
+.pane {
+    height: 95vh;
+    display: flex;
+    overflow: hidden;
+}
+
+.left-pane {
+    display: flex;
+    flex-direction: column;
+}
+
+.right-pane {
+    display: flex;
+    flex-grow: 1;
+}
+
+.title {
+    text-align: center;
+    background-color: hsl(225, 6%, 13%);
+    color: white;
+    font-weight: bold;
+    padding: 0.5rem 0;
+}
+
+.submit-code {
+    height: 5vh;
+    width: 100vw;
+    border: none;
+    cursor: pointer;
+    background-color: turquoise;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 0.5rem;
+}
+
+.submit-code:hover {
+    background-color: mediumspringgreen;
+}
+
+.resizable {
+    height: 100%;
+}
+
+.draggable {
+    background-color: hsl(225, 6%, 13%);
+    cursor: col-resize;
+    height: 100%;
+    width: 10px;
+}

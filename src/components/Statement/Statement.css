@@ -1,0 +1,9 @@
+.statement-container {
+    background-color: hsl(225, 6%, 25%);
+}
+
+.statement-body {
+    color: azure;
+    padding: 0.5rem;
+    height: 60vh;
+}
