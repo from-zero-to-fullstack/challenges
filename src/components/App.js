@@ -46,7 +46,7 @@ function App() {
         if (submittedAnswer === correctAnswer) {
             msg = '✅ Well done';
 
-            setLevel(level + 1);
+            // setLevel(level + 1);
         } else {
             msg = '❌ Wrong answer... try again';
         }
