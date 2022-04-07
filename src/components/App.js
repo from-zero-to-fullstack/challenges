@@ -2,57 +2,81 @@ import React, { useState } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
 import Statement from './Statement/Statement';
 import Editor from './Editor/Editor';
-import Console from './Console/Console';
+import Terminal from './Terminal/Terminal';
 import './App.css';
 
-import javascript from './exercises/javascript.json';
-
-export class statement {
-    constructor(id, title, description, sampleInput, sampleOutput) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.sampleInput = sampleInput;
-        this.sampleOutput = sampleOutput;
-    }
-}
+import codeExercises from './exercises/code-exercises.json';
 
 function App() {
-
+    // const [level, setLevel] = useLocalStorage('level', 0);
+    const [level, setLevel] = useState(0);
     // const [statement, setStatement] = useLocalStorage('statement', '');
     const [code, setCode] = useLocalStorage('code', '');
-    // const [console, setConsole] = useLocalStorage('console', '');
-
-    let stat = new statement();
-
-    const questions = javascript.map((data) => {
-        stat.id = data.id;
-        stat.title = data.title;
-        stat.description = data.description
-        stat.sampleInput = data.sampleInput;
-        stat.sampleOutput = data.sampleOutput;
-    });
-
-    const [initialPos, setInitialPos] = useState(null);
+    const [terminal, setTerminal] = useState('');
+    const [initialPosition, setInitialPosition] = useState(null);
     const [initialSize, setInitialSize] = useState(null);
 
-    const initial = e => {
+    const questions = codeExercises.javascript.map(data => {
+        return data;
+    });
+
+    let output = '';
+
+    function initial(e) {
         let resizable = document.getElementById('resizable');
 
-        setInitialPos(e.clientX);
+        setInitialPosition(e.clientX);
         setInitialSize(resizable.offsetWidth);
-    };
+    }
 
-    const resize = e => {
+    function resize(e) {
         let resizable = document.getElementById('resizable');
-        resizable.style.width = `${parseInt(initialSize) + parseInt(e.clientX - initialPos)
-            }px`;
+
+        resizable.style.width = `${
+            parseInt(initialSize) + parseInt(e.clientX - initialPosition)
+        }px`;
+    }
+
+    const submitCode = () => {
+        const submittedAnswer = getSubmittedAnswer();
+        const correctAnswer = questions[level].sampleOutput;
+
+        let msg = '';
+
+        if (submittedAnswer === correctAnswer) {
+            msg = '✅ Well done';
+
+            setLevel(level + 1);
+        } else {
+            msg = '❌ Wrong answer... try again';
+        }
+
+        setTerminal({
+            message: msg,
+            output: output,
+            isError: output === '' ? false : true,
+        });
     };
 
-    function submitCode() {
-        alert(
-            '\nNot implemented yet...\n\nBut good to know that you are doing something! 😁'
-        );
+    function getSubmittedAnswer() {
+        try {
+            let sanitizedCode = code.replace(
+                /\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$|(<script>)|eval|XMLHttpRequest|document\.write/gm,
+                ''
+            );
+
+            console.oldLog = console.log;
+            console.log = function (code) {
+                console.oldLog(code);
+                return code;
+            };
+
+            const script = eval(sanitizedCode);
+
+            return script;
+        } catch (e) {
+            output = e.message;
+        }
     }
 
     return (
@@ -60,14 +84,15 @@ function App() {
             <div className="pane">
                 <div id="resizable" className="left-pane resizable">
                     <Statement
-                        title={stat.title}
-                        description={stat.description}
-                        sampleInput={stat.sampleInput}
-                        sampleOutput={stat.sampleOutput}
+                        title={questions[level].title}
+                        description={questions[level].description}
+                        sampleInput={questions[level].sampleInput}
+                        sampleOutput={questions[level].sampleOutput}
                     />
-                    <Console
-                        message={console.message}
-                        output={console.output}
+                    <Terminal
+                        message={terminal.message}
+                        output={terminal.output}
+                        isError={terminal.isError}
                     />
                 </div>
                 <div
@@ -85,11 +110,7 @@ function App() {
                     />
                 </div>
             </div>
-            <button
-                type="button"
-                className="submit-code"
-                onClick={() => submitCode()}
-            >
+            <button type="button" className="submit-code" onClick={submitCode}>
                 Submit
             </button>
         </>

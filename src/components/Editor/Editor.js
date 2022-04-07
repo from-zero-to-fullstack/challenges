@@ -26,7 +26,7 @@ export default function Editor(props) {
                         lint: true,
                         mode: language,
                         lineNumbers: true,
-                        keymap: 'sublime'
+                        keymap: 'sublime',
                     }}
                 />
             </div>

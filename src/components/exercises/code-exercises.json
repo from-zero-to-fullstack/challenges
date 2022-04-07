@@ -1,0 +1,25 @@
+{
+    "javascript": [
+        {
+            "id": 1,
+            "title": "Print today's date",
+            "description": "You need to create a program that displays todays date in a human readable format.",
+            "simpleInput": null,
+            "sampleOutput": "Monday, June 23rd 2022 18:27"
+        },
+        {
+            "id": 2,
+            "title": "Create password",
+            "description": "Create a password",
+            "simpleInput": null,
+            "sampleOutput": null
+        },
+        {
+            "id": 3,
+            "title": "Print hello world",
+            "description": "Write code to print 'Hello World!' into console",
+            "simpleInput": null,
+            "sampleOutput": "Hello World!"
+        }
+    ]
+}
