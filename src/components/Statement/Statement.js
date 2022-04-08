@@ -10,7 +10,7 @@ export default function Statement(props) {
     return (
         <>
             <div className="statement-container">
-                <div className="title">{title}</div>
+                <div className="pane-title">{title}</div>
                 <div className="statement-body">
                     {description ? (
                         <StatementDescription props={description} />

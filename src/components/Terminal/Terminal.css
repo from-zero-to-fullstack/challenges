@@ -1,9 +1,9 @@
 .terminal-container {
-    background-color: hsl(225, 6%, 3%);
+    background-color: black;
     color: mediumspringgreen;
 }
 
 .terminal-body {
     padding: 0.5rem;
-    height: 30vh;
+    height: 35vh;
 }

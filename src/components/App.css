@@ -1,11 +1,93 @@
-.pane {
-    height: 95vh;
+.container {
+    height: 100vh;
+    width: 100vw;
+}
+
+.header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: black;
+    height: 5vh;
+    min-height: 20px;
+    width: 100vw;
+}
+
+.button {
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: 0.5s;
+}
+
+.header-title {
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    z-index: 1;
+    color: turquoise;
+    /* text-transform: uppercase; */
+}
+
+.header-title span {
+    color: rgb(73, 164, 255);
+    font-size: larger;
+}  
+
+.button:hover {
+    transition: 0.5s;
+}
+
+.menu-button {
+    position: absolute;
+    z-index: 2;
+    background-color: black;
+    color: turquoise;
+    height: 100%;
+    padding: 0 1rem;
+}
+
+.menu-button:hover {
+    background-color: turquoise;
+    color: black;
+}
+
+.szh-menu,
+.szh-menu--state-open,
+.szh-menu--dir-bottom {
+    background-color: black;
+}
+
+.menu-container {
+    /* background-color: black; */
+}
+
+.menu-item {
+    color: turquoise;
+}
+
+.menu-item:hover {
+    background-color: turquoise;
+    color: black;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.body {
+    height: 90vh;
+    display: flex;
+    overflow: hidden;
+}
+
+.footer {
+    height: 5vh;
+    min-height: 20px;
     display: flex;
     overflow: hidden;
 }
 
 .left-pane {
-    height: 100%;
     display: flex;
     flex-direction: column;
     min-width: 30%;
@@ -18,7 +100,7 @@
     min-width: 30%;
 }
 
-.title {
+.pane-title {
     text-align: center;
     background-color: hsl(225, 6%, 13%);
     color: white;
@@ -26,19 +108,27 @@
     padding: 0.5rem 0;
 }
 
-.submit-code {
+.btn-submit-code {
     height: 5vh;
     width: 100vw;
-    border: none;
-    cursor: pointer;
     background-color: turquoise;
-    font-size: 1.5rem;
-    font-weight: bold;
     letter-spacing: 0.5rem;
 }
 
-.submit-code:hover {
+.btn-submit-code:hover {
     background-color: mediumspringgreen;
+}
+
+.btn-next-level {
+    display: none;
+    height: 5vh;
+    width: 100vw;
+    background-color: gold;
+    letter-spacing: 0.5rem;
+}
+
+.btn-next-level:hover {
+    background-color: goldenrod;
 }
 
 .resizable {

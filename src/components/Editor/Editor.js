@@ -15,7 +15,7 @@ export default function Editor(props) {
     return (
         <>
             <div className="editor-container">
-                <div className="title">{displayName}</div>
+                <div className="pane-title">{displayName} Editor</div>
                 <ControlledEditor
                     onBeforeChange={handleChange}
                     value={value}

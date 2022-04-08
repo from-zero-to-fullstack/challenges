@@ -9,7 +9,7 @@ export default function Terminal(props) {
     return (
         <>
             <div className="terminal-container">
-                <div className="title">Terminal</div>
+                <div className="pane-title">Terminal</div>
                 <div className="terminal-body">
                     {message ? <TerminalMessage props={message} /> : null}
                     {output ? (
