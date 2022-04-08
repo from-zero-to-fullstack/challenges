@@ -8,7 +8,7 @@ From zero to FullStack - an unofficial course led by [Pedro Soares](https://gith
 
 This repository aims to test what you studied so far and challenge you 💪
 
-![app](./images/app.png)
+![app](./images/app.gif)
 
 # Technologies
 
