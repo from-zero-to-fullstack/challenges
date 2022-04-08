@@ -24,7 +24,7 @@ function App() {
     const [overflow, setOverflow] = useState('auto');
     const [position, setPosition] = useState('auto');
 
-    const questions = codeExercises.javascript.map(data => {
+    const questions = codeExercises.javascript.map((data) => {
         return data;
     });
 
@@ -47,11 +47,11 @@ function App() {
 
     const submitCode = () => {
         const submittedAnswer = getSubmittedAnswer();
-        const correctAnswer = questions[level].sampleOutput;
+        const correctAnswer = questions[level].sampleOutputs;
 
         let consoleMessage = '';
 
-        if (submittedAnswer === correctAnswer) {
+        if (correctAnswer.includes(submittedAnswer)) {
             const { msg } = handleCorrectAnswer();
             consoleMessage = msg;
         } else {
@@ -68,6 +68,10 @@ function App() {
 
     function getSubmittedAnswer() {
         try {
+            if (code === '') {
+                throw new Error("You didn't wrote any code...");
+            }
+
             let sanitizedCode = code.replace(
                 /\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$|(<script>)|eval|XMLHttpRequest|document\.write/gm,
                 ''
@@ -136,7 +140,7 @@ function App() {
             setLevel(levelToRedirect);
             clearWorkspace();
         }
-    }
+    };
 
     function clearWorkspace() {
         setCode('');
@@ -159,9 +163,9 @@ function App() {
                         <div className="menu-container">
                             {questions.map((_, i) => (
                                 <MenuItem
-                                    className="menu-item"
                                     key={i}
-                                    onClick={e => goToLevel(i)}
+                                    className="menu-item"
+                                    onClick={(e) => goToLevel(i)}
                                 >
                                     # {i + 1} {_.title}
                                 </MenuItem>
@@ -176,12 +180,7 @@ function App() {
                 </div>
                 <div className="body">
                     <div id="resizable" className="left-pane resizable">
-                        <Statement
-                            title={questions[level].title}
-                            description={questions[level].description}
-                            sampleInput={questions[level].sampleInput}
-                            sampleOutput={questions[level].sampleOutput}
-                        />
+                        <Statement question={questions[level]} />
                         <Terminal
                             message={terminal.message}
                             output={terminal.output}

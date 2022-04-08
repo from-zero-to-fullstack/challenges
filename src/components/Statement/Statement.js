@@ -5,21 +5,23 @@ import StatementSampleOutput from './StatementSampleOutput';
 import './Statement.css';
 
 export default function Statement(props) {
-    const { title, description, sampleInput, sampleOutput } = props;
+    const { question } = props;
 
     return (
         <>
             <div className="statement-container">
-                <div className="pane-title">{title}</div>
+                <div className="pane-title">
+                    ({question.id}) {question.title}
+                </div>
                 <div className="statement-body">
-                    {description ? (
-                        <StatementDescription props={description} />
+                    {question.description ? (
+                        <StatementDescription props={question.description} />
                     ) : null}
-                    {sampleInput ? (
-                        <StatementSampleInput props={sampleInput} />
+                    {question.sampleInputs ? (
+                        <StatementSampleInput props={question.sampleInputs} />
                     ) : null}
-                    {sampleOutput ? (
-                        <StatementSampleOutput props={sampleOutput} />
+                    {question.sampleOutputs ? (
+                        <StatementSampleOutput props={question.sampleOutputs} />
                     ) : null}
                 </div>
             </div>

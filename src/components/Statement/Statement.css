@@ -6,4 +6,5 @@
     color: azure;
     padding: 0.5rem;
     height: 50vh;
+    overflow: auto;
 }

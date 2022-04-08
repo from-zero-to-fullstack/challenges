@@ -1,13 +1,14 @@
 import React from 'react';
-import './StatementSampleInput.css';
+import './StatementSample.css';
 
 export default function StatementSampleInput(props) {
     return (
         <>
-            <div className="statement-sample-input-container">
-                <hr />
-                <div className="strong">Sample Input:</div>
-                <div className="sampleInput">{props.props}</div>
+            <div>
+                <div className="statement-title">Sample Inputs:</div>
+                {props.props.map((_, i) => (
+                    <div key={i}>- {_}</div>
+                ))}
             </div>
         </>
     );

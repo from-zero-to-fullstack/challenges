@@ -6,4 +6,5 @@
 .terminal-body {
     padding: 0.5rem;
     height: 35vh;
+    overflow: auto;
 }
