@@ -199,7 +199,7 @@ function App() {
         <>
             <div className={`end-game ${showEndScreen ? 'show' : 'hide'}`}>
                 <h1>You reached the end! 💪</h1>
-                <h3>Congratulations! Your now officially part of the From Zero to FullStack team ❤️❤️</h3>
+                <h3>Congratulations! You are now officially part of the From Zero to FullStack team ❤️❤️</h3>
                 <button
                     type="button"
                     className="button btn-close-screen"
