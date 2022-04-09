@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
 import Statement from './Statement/Statement';
 import Editor from './Editor/Editor';
@@ -13,8 +13,10 @@ import './App.css';
 import codeExercises from './exercises/code-exercises.json';
 
 function App() {
-    // const [level, setLevel] = useLocalStorage('level', 0);
-    const [level, setLevel] = useState(0);
+    const [level, setLevel] = useLocalStorage('level', 0);
+    // const [level, setLevel] = useState(0);
+    const [maxLevel, setMaxLevel] = useLocalStorage('maxLevel', 0);
+    // const [maxLevel, setMaxLevel] = useState(0);
     // const [statement, setStatement] = useLocalStorage('statement', '');
     const [code, setCode] = useLocalStorage('code', '');
     const [terminal, setTerminal] = useState('');
@@ -23,6 +25,10 @@ function App() {
 
     const [overflow, setOverflow] = useState('auto');
     const [position, setPosition] = useState('auto');
+
+    useEffect(() => {
+        handleMaxLevel();
+    }, [level]);
 
     const questions = codeExercises.javascript.map((data) => {
         return data;
@@ -51,7 +57,7 @@ function App() {
 
         let consoleMessage = '';
 
-        if (correctAnswer.includes(submittedAnswer)) {
+        if (submittedAnswer !== '' && correctAnswer.includes(submittedAnswer)) {
             const { msg } = handleCorrectAnswer();
             consoleMessage = msg;
         } else {
@@ -69,7 +75,7 @@ function App() {
     function getSubmittedAnswer() {
         try {
             if (code === '') {
-                throw new Error("You didn't wrote any code...");
+                throw new Error("You didn't wrote any code... 🤷");
             }
 
             let sanitizedCode = code.replace(
@@ -77,18 +83,21 @@ function App() {
                 ''
             );
 
-            console.oldLog = console.log;
-            console.log = function (code) {
-                console.oldLog(code);
-                return code;
-            };
+            overrideConsoleLog();
 
-            const script = eval(sanitizedCode);
-
-            return script;
+            return eval(sanitizedCode);
         } catch (e) {
             consoleOutput = e.message;
         }
+    }
+
+    function overrideConsoleLog() {
+        console.oldLog = console.log;
+
+        console.log = (code) => {
+            console.oldLog(code);
+            return code;
+        };
     }
 
     function handleCorrectAnswer() {
@@ -129,14 +138,18 @@ function App() {
     const goToNextLevel = () => {
         hideNextLevelButton();
         showSubmitButton();
-
         clearWorkspace();
-
         setLevel(level + 1);
     };
 
+    function handleMaxLevel() {
+        if (level > maxLevel) {
+            setMaxLevel(level);
+        }
+    }
+
     const goToLevel = (levelToRedirect) => {
-        if (level != levelToRedirect) {
+        if (level !== levelToRedirect) {
             setLevel(levelToRedirect);
             clearWorkspace();
         }
@@ -146,7 +159,7 @@ function App() {
         setCode('');
         setTerminal('');
     }
-
+    
     return (
         <>
             <div className="container">
@@ -161,25 +174,42 @@ function App() {
                         position={position}
                     >
                         <div className="menu-container">
-                            {questions.map((_, i) => (
-                                <MenuItem
-                                    key={i}
-                                    className="menu-item"
-                                    onClick={(e) => goToLevel(i)}
-                                >
-                                    # {i + 1} {_.title}
-                                </MenuItem>
-                            ))}
+                            {questions.map((_, i) => {
+                                if (maxLevel >= _.level) {
+                                    return (
+                                        <MenuItem
+                                            key={i}
+                                            className={'menu-item'}
+                                            onClick={(e) => goToLevel(i)}
+                                        >
+                                            # {i + 1} {_.title}
+                                        </MenuItem>
+                                    );
+                                } else {
+                                    return (
+                                        <MenuItem
+                                            key={i}
+                                            disabled
+                                            onClick={(e) => goToLevel(i)}
+                                        >
+                                            # {i + 1} {_.title}
+                                        </MenuItem>
+                                    );
+                                }
+                            })}
                         </div>
                     </Menu>
-                    <h2 className="header-title">
+                    <h3 className="header-title">
                         <span>console.log(</span>
                         'From Zero to FullStack'
                         <span>);</span>
-                    </h2>
+                    </h3>
                 </div>
                 <div className="body">
-                    <div id="resizable" className="left-pane resizable">
+                    <div
+                        id="resizable"
+                        className="left-pane resizable"
+                    >
                         <Statement question={questions[level]} />
                         <Terminal
                             message={terminal.message}

@@ -11,7 +11,7 @@ export default function Statement(props) {
         <>
             <div className="statement-container">
                 <div className="pane-title">
-                    ({question.id}) {question.title}
+                    ({question.level}) {question.title}
                 </div>
                 <div className="statement-body">
                     {question.description ? (
