@@ -10,6 +10,10 @@ This repository aims to test what you studied so far and challenge you 💪
 
 ![app](./images/app.gif)
 
+And when you reach the end 👇🏆
+
+![end screen](./images/end-screen.png)
+
 # Technologies
 
 - [React](https://reactjs.org/docs/getting-started.html)
