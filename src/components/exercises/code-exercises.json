@@ -40,6 +40,15 @@
             "sampleOutputs": null,
             "expectedPattern": null,
             "correctAnswer": "I love JavaScript!!"
+        },
+        {
+            "level": 5,
+            "title": "",
+            "description": "",
+            "sampleInputs": null,
+            "sampleOutputs": null,
+            "expectedPattern": null,
+            "correctAnswer": null
         }
     ]
 }

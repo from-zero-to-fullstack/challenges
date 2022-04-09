@@ -21,6 +21,7 @@ function App() {
     const [initialSize, setInitialSize] = useState(null);
     const [overflow, setOverflow] = useState('auto');
     const [position, setPosition] = useState('auto');
+    const [showEndScreen, setShowEndScreen] = useState(false);
 
     useEffect(() => {
         handleMaxLevel();
@@ -40,9 +41,8 @@ function App() {
     function resize(e) {
         let resizable = document.getElementById('resizable');
 
-        resizable.style.width = `${
-            parseInt(initialSize) + parseInt(e.clientX - initialPosition)
-        }px`;
+        resizable.style.width = `${parseInt(initialSize) + parseInt(e.clientX - initialPosition)
+            }px`;
     }
 
     let consoleOutput = '';
@@ -52,15 +52,8 @@ function App() {
         const submittedAnswer = getSubmittedAnswer();
 
         const currentQuestion = questions[level];
-        console.info('currentQuestion', currentQuestion);
-        console.info(
-            'currentQuestion.expectedPattern',
-            currentQuestion.expectedPattern
-        );
 
         const expectedPattern = new RegExp(currentQuestion.expectedPattern);
-
-        console.info('expectedPattern', expectedPattern);
 
         let consoleMessage = '';
 
@@ -169,10 +162,15 @@ function App() {
     }
 
     const goToNextLevel = () => {
-        hideNextLevelButton();
-        showSubmitButton();
-        clearWorkspace();
-        setLevel(level + 1);
+        if (level === 3) {
+            setShowEndScreen(true);
+        }
+        else {
+            hideNextLevelButton();
+            showSubmitButton();
+            clearWorkspace();
+            setLevel(level + 1);
+        }
     };
 
     function handleMaxLevel() {
@@ -193,8 +191,23 @@ function App() {
         setTerminal('');
     }
 
+    const closeEndScreen = () => {
+        setShowEndScreen(false);
+    }
+
     return (
         <>
+            <div className={`end-game ${showEndScreen ? 'show' : 'hide'}`}>
+                <h1>You reached the end! 💪</h1>
+                <h3>Congratulations! Your now officially part of the From Zero to FullStack team ❤️❤️</h3>
+                <button
+                    type="button"
+                    className="button btn-close-screen"
+                    onClick={closeEndScreen}
+                >
+                    Close
+                </button>
+            </div>
             <div className="container">
                 <div className="header">
                     <Menu
