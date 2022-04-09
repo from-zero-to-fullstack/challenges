@@ -8,44 +8,38 @@
             "sampleOutputs": [
                 "Today is Monday and it's 9:13:54 AM o'clock",
                 "Today is Sunday and it's 4:45:16 PM o'clock",
-                "Today is Frlevelay and it's 12:0:0 Noon o'clock",
-                "Today is Wednesday and it's 12:0:0 Mlevelnight o'clock"
-            ]
+                "Today is Friday and it's 12:0:0 Noon o'clock",
+                "Today is Wednesday and it's 12:0:0 Midnight o'clock"
+            ],
+            "expectedPattern": "Today is (Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday) and it\\'s ([0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2}) (AM|PM|Noon|Midnight) o\\'clock",
+            "correctAnswer": null
         },
         {
             "level": 2,
-            "title": "Create password",
-            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            "title": "Create simple password",
+            "description": "The password must have 5 letters, 2 numbers and 1 special character",
             "sampleInputs": null,
-            "sampleOutputs": ["password1"]
+            "sampleOutputs": ["kAndr$12", "Pwdgw90&", "32ImwdX@"],
+            "expectedPattern": "^(?=.*[0-9]{2})(?=.*[a-zA-Z]{5})(?=.*[^0-9a-zA-Z\\s]{1}).{8}$",
+            "correctAnswer": null
         },
         {
             "level": 3,
             "title": "Print hello world",
-            "description": "Write code to print 'Hello World!' into console",
+            "description": "Write code to print 'Hello World!' into console.\n\nSeems easy, right? 😂",
             "sampleInputs": null,
-            "sampleOutputs": ["Hello World!"]
+            "sampleOutputs": null,
+            "expectedPattern": null,
+            "correctAnswer": "Hello World!"
         },
         {
             "level": 4,
-            "title": "Another exercise",
-            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by acclevelent, sometimes on purpose (injected humour and the like).",
-            "sampleInputs": null,
-            "sampleOutputs": ["Monday, June 23rd 2022 18:27"]
-        },
-        {
-            "level": 5,
-            "title": "And another one",
-            "description": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
-            "sampleInputs": null,
-            "sampleOutputs": null
-        },
-        {
-            "level": 6,
-            "title": "Another one after last one",
-            "description": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hlevelden in the mleveldle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
-            "sampleInputs": null,
-            "sampleOutputs": ["Hello World!"]
+            "title": "Reverse string",
+            "description": "Reverse the following string 👇",
+            "sampleInputs": ["!!tpircSavaJ evol I"],
+            "sampleOutputs": null,
+            "expectedPattern": null,
+            "correctAnswer": "I love JavaScript!!"
         }
     ]
 }

@@ -14,15 +14,11 @@ import codeExercises from './exercises/code-exercises.json';
 
 function App() {
     const [level, setLevel] = useLocalStorage('level', 0);
-    // const [level, setLevel] = useState(0);
     const [maxLevel, setMaxLevel] = useLocalStorage('maxLevel', 0);
-    // const [maxLevel, setMaxLevel] = useState(0);
-    // const [statement, setStatement] = useLocalStorage('statement', '');
     const [code, setCode] = useLocalStorage('code', '');
     const [terminal, setTerminal] = useState('');
     const [initialPosition, setInitialPosition] = useState(null);
     const [initialSize, setInitialSize] = useState(null);
-
     const [overflow, setOverflow] = useState('auto');
     const [position, setPosition] = useState('auto');
 
@@ -50,32 +46,67 @@ function App() {
     }
 
     let consoleOutput = '';
+    let errorFlag = false;
 
     const submitCode = () => {
         const submittedAnswer = getSubmittedAnswer();
-        const correctAnswer = questions[level].sampleOutputs;
+
+        const currentQuestion = questions[level];
+        console.info('currentQuestion', currentQuestion);
+        console.info(
+            'currentQuestion.expectedPattern',
+            currentQuestion.expectedPattern
+        );
+
+        const expectedPattern = new RegExp(currentQuestion.expectedPattern);
+
+        console.info('expectedPattern', expectedPattern);
 
         let consoleMessage = '';
 
-        if (submittedAnswer !== '' && correctAnswer.includes(submittedAnswer)) {
-            const { msg } = handleCorrectAnswer();
-            consoleMessage = msg;
-        } else {
+        if (submittedAnswer === '') {
             const { msg } = handleIncorrectAnswer();
             consoleMessage = msg;
+        }
+
+        if (
+            currentQuestion.correctAnswer &&
+            currentQuestion.correctAnswer === submittedAnswer
+        ) {
+            const { msg, isError } = handleCorrectAnswer();
+            consoleMessage = msg;
+            errorFlag = isError;
+        } else if (
+            currentQuestion.sampleOutputs &&
+            currentQuestion.sampleOutputs.includes(submittedAnswer)
+        ) {
+            const { msg, isError } = handleCorrectAnswer();
+            consoleMessage = msg;
+            errorFlag = isError;
+        } else if (expectedPattern && expectedPattern.exec(submittedAnswer)) {
+            const { msg, isError } = handleCorrectAnswer();
+            consoleMessage = msg;
+            errorFlag = isError;
+        } else {
+            const { msg, isError } = handleIncorrectAnswer();
+            consoleMessage = msg;
+            errorFlag = isError;
         }
 
         setTerminal({
             message: consoleMessage,
             output: consoleOutput,
-            isError: consoleOutput === '' ? false : true,
+            isError: errorFlag,
+            submitedCodeOutput: submittedAnswer,
         });
     };
 
     function getSubmittedAnswer() {
         try {
             if (code === '') {
-                throw new Error("You didn't wrote any code... 🤷");
+                throw new Error(
+                    "You need to write some code...don't be afraid 💪"
+                );
             }
 
             let sanitizedCode = code.replace(
@@ -106,12 +137,14 @@ function App() {
 
         return {
             msg: '✅ Well done',
+            isError: false,
         };
     }
 
     function handleIncorrectAnswer() {
         return {
             msg: '❌ Wrong answer... try again',
+            isError: true,
         };
     }
 
@@ -159,7 +192,7 @@ function App() {
         setCode('');
         setTerminal('');
     }
-    
+
     return (
         <>
             <div className="container">
@@ -215,6 +248,7 @@ function App() {
                             message={terminal.message}
                             output={terminal.output}
                             isError={terminal.isError}
+                            submitedCodeOutput={terminal.submitedCodeOutput}
                         />
                     </div>
                     <div
